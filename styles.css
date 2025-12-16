@@ -1,0 +1,134 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Zain", sans-serif;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.heading {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+input {
+  padding: 0.25rem;
+  border: 1px solid rgb(156, 154, 154);
+  border-radius: 0.5rem;
+}
+select {
+  padding-inline-start: 0.2rem;
+  border: 1px solid rgb(156, 154, 154);
+  border-radius: 0.5rem;
+  width: 60%;
+}
+textarea {
+  border: 1px solid rgb(156, 154, 154);
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+}
+.formDiv {
+  padding: auto;
+  width: 60%;
+}
+.agePhoneDiv {
+  display: flex;
+}
+.genderBox {
+  display: flex;
+  padding: 0.2rem;
+  border: 1px solid rgb(156, 154, 154);
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
+}
+.nameDiv {
+  display: flex;
+  flex-direction: column;
+}
+.ageDiv {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-right: 0.5rem;
+}
+.genderDiv {
+  display: flex;
+}
+.countryDiv {
+  display: flex;
+  flex-direction: column;
+}
+.techDiv {
+  display: flex;
+  flex-direction: column;
+}
+.addressDiv {
+  display: flex;
+  flex-direction: column;
+}
+.telephoneDiv {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-left: 0.5rem;
+}
+.emailDiv {
+  display: flex;
+  flex-direction: column;
+}
+.actionsDiv {
+  display: flex;
+  margin: 1rem;
+}
+.actionsDiv button {
+  background-color: black;
+  color: white;
+  margin-right: 1rem;
+  padding: 0.5 rem;
+  border-radius: 2rem;
+  width: 4rem;
+  font-size: 1rem;
+  border: 2px solid black;
+}
+button[value="reset"] {
+  background-color: white;
+  color: black;
+}
+
+/* For the hidden table */
+.form {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+table {
+  border-radius: 1rem;
+}
+
+@media (max-width: 600px) {
+  .agePhoneDiv {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .telephoneDiv {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+  }
+  .ageDiv {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  select {
+    width: 100%;
+  }
+  .genderDiv {
+    display: flex;
+    flex-direction: column;
+  }
+}

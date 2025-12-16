@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>HTML Forms</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="heading">
+        <h1>Personal Info</h1>
+        <small>Update your personal information here</small>
+      </div>
+      <div class="formDiv">
+        <form id="assignmentForm">
+          <div class="nameDiv">
+            <!-- Name -->
+            <label for="name">Name </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Your name"
+              required
+            />
+          </div>
+          <div class="emailDiv">
+            <!-- Email -->
+            <label for="email">Email Address </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Your email"
+              required
+            />
+          </div>
+          <div class="agePhoneDiv">
+            <div class="ageDiv">
+              <!-- Age -->
+              <label for="age">Age: </label>
+              <input
+                type="number"
+                name="age"
+                id="age"
+                min="1"
+                max="150"
+                placeholder="Your age"
+                required
+              />
+            </div>
+            <div class="telephoneDiv">
+              <!-- Telephone -->
+              <label for="telephone">Phone (+91/91) </label>
+              <input
+                type="tel"
+                name="telephone"
+                id="telephone"
+                pattern="^(\+91\d{10}|91\d{10}|\d{10})$"
+                placeholder="Your phone number"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="countryDiv">
+            <!-- Country -->
+            <label for="country">Country: </label>
+            <select id="country" name="country">
+              <option value="" disabled selected hidden>
+                Select your country
+              </option>
+              <option value="India">India</option>
+              <option value="USA">USA</option>
+              <option value="Japan">Japan</option>
+              <option value="China">China</option>
+            </select>
+          </div>
+          <label>Gender</label>
+          <div class="genderDiv">
+            <!-- Gender -->
+            <div class="genderBox">
+              <label for="male">Male</label>
+              <input type="radio" name="gender" id="male" value="male" />
+            </div>
+            <div class="genderBox">
+              <label for="female">Female</label>
+              <input type="radio" name="gender" id="female" value="female" />
+            </div>
+            <div class="genderBox">
+              <label for="others">Others</label>
+              <input type="radio" name="gender" id="others" value="others" />
+            </div>
+          </div>
+          <div class="techDiv">
+            <!-- Technological Stack -->
+            <label for="techStack">Technological Stack: </label>
+            <small>Select your tech stack, multiple allowed</small>
+            <select id="techStack" name="techStack" multiple>
+              <option value="HTML">HTML</option>
+              <option value="CSS">CSS</option>
+              <option value="JS">JS</option>
+              <option value="React">React</option>
+              <option value="React Native">React Native</option>
+            </select>
+          </div>
+          <div class="addressDiv">
+            <!-- Address -->
+            <label for="address">Address: </label>
+            <textarea
+              name="address"
+              id="address"
+              rows="5"
+              cols="25"
+              placeholder="Your Address"
+              required
+            ></textarea>
+          </div>
+          <!-- Actions -->
+          <div class="actionsDiv">
+            <button type="submit" name="submit" value="reset">Reset</button>
+            <button type="submit" name="submit" value="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <br /><br />
+    <!-- Space for table -->
+    <div class="form">
+      <table id="table" border="1" cellpadding="8" cellspacing="0" hidden>
+        <caption>Your Information</caption>
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td id="hiddenTable_name"></td>
+          </tr>
+          <tr>
+            <td>Age</td>
+            <td id="hiddenTable_age"></td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td id="hiddenTable_gender"></td>
+          </tr>
+          <tr>
+            <td>Country</td>
+            <td id="hiddenTable_country"></td>
+          </tr>
+          <tr>
+            <td>Technological Stack</td>
+            <td id="hiddenTable_techStack"></td>
+          </tr>
+          <tr>
+            <td>Address</td>
+            <td id="hiddenTable_address"></td>
+          </tr>
+          <tr>
+            <td>Telephone</td>
+            <td id="hiddenTable_telephone"></td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td id="hiddenTable_email"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      const form = document.getElementById("assignmentForm");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const actionType = document.activeElement;
+        const formData = new FormData(form);
+        const action = actionType.innerText;
+        const table = document.getElementById("table");
+        if (action === "Submit") {
+          // first validations
+          const gender = formData.get("gender");
+          if (!gender) {
+            alert("Please select a gender");
+            return;
+          }
+          const techValues = formData.getAll("techStack");
+          if (techValues.length === 0) {
+            alert("Please select at least one technology.");
+            return;
+          }
+          // Now print the data in a tabular format
+          const name = formData.get("name");
+          const age = formData.get("age");
+          const country = formData.get("country");
+          const techStack = formData.getAll("techStack").join(", ");
+          const address = formData.get("address");
+          const telephone = formData.get("telephone");
+          const email = formData.get("email");
+
+          // Fill the table
+          document.getElementById("hiddenTable_name").innerText = name;
+          document.getElementById("hiddenTable_age").innerText = age;
+          document.getElementById("hiddenTable_gender").innerText = gender;
+          document.getElementById("hiddenTable_country").innerText = country;
+          document.getElementById("hiddenTable_techStack").innerText =
+            techStack;
+          document.getElementById("hiddenTable_address").innerText = address;
+          document.getElementById("hiddenTable_telephone").innerText =
+            telephone;
+          document.getElementById("hiddenTable_email").innerText = email;
+          table.hidden = false;
+        } else {
+          // Reset the form
+          form.reset();
+          table.hidden = true;
+        }
+      });
+    </script>
+  </body>
+</html>
