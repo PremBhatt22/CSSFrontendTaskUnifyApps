@@ -107,6 +107,9 @@ button[value="reset"] {
 table {
   border-radius: 1rem;
 }
+.text {
+    text-align: center;
+}
 
 @media (max-width: 600px) {
   .agePhoneDiv {
